@@ -3,7 +3,7 @@
 module.exports = function(grunt) {
 
   grunt.initConfig({
-    clean: ['css/**/branch.*', 'gen'],
+    clean: ['css/**/*.gen.*', 'gen'],
     csstree: {
       mainTree: {
         options: {
@@ -15,7 +15,7 @@ module.exports = function(grunt) {
     less: {
       dev: {
         files: {
-          'gen/index.css': 'css/index/branch.less'
+          'gen/index.css': 'css/index/branch.gen.less'
         }
       }
     }
