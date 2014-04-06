@@ -21,7 +21,7 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.loadNpmTasks('csstree');
+  grunt.loadNpmTasks('grunt-csstree');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-clean');
 
