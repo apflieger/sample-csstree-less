@@ -3,20 +3,21 @@
 module.exports = function(grunt) {
 
   grunt.initConfig({
-    clean: ['css/**/*.gen.*', 'gen'],
+    clean: ['styles/**/*.gen.*', 'gen'],
     csstree: {
-      mainTree: {
+      lessTree: {
         options: {
-          extension: '.less'
+          ext: '.less'
         },
-        src: 'css'
+        src: 'styles'
       }
     },
     less: {
-      dev: {
-        files: {
-          'gen/index.css': 'css/index/branch.gen.less'
-        }
+      compileTree: {
+        expand: true,
+        src: ['styles/**/branch.gen.less'],
+        ext: '.min.css',
+        extDot: 'last'
       }
     }
   });
