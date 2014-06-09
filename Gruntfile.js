@@ -4,31 +4,42 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     clean: ['styles/**/*.gen.*', 'gen'],
-    csstree: {
-      lessTree: {
-        options: {
-          ext: '.less'
-        },
-        src: 'styles'
-      }
-    },
+
     less: {
       compileTree: {
-        expand: true,
-        src: ['styles/**/branch.gen.less'],
-        ext: '.min.css',
+        expand: true, 
+        cwd: 'styles', 
+        src: ['**/*.less'],
+        ext: '.css',
+        dest: 'gen/', 
         extDot: 'last',
         options: {
           sourceMap: true
         }
       }
-    }
+    },
+    copy: {
+      css: {
+        expand: true, 
+        cwd: 'styles', 
+        src: ['**/*.css'],
+        // ext: '.gen.css',
+        dest: 'gen/', 
+        // extDot: 'last'
+      }
+    },
+    csstree: {
+      lessTree: {
+        src: 'gen'
+      }
+    },
   });
 
   grunt.loadNpmTasks('grunt-csstree');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
-  grunt.registerTask('default', ['clean','csstree', 'less']);
+  grunt.registerTask('default', ['clean','copy', 'less', 'csstree']);
 
 };
