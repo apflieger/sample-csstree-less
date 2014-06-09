@@ -17,7 +17,10 @@ module.exports = function(grunt) {
         expand: true,
         src: ['styles/**/branch.gen.less'],
         ext: '.min.css',
-        extDot: 'last'
+        extDot: 'last',
+        options: {
+          sourceMap: true
+        }
       }
     }
   });
