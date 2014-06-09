@@ -33,13 +33,22 @@ module.exports = function(grunt) {
         src: 'gen'
       }
     },
+    watch: {
+      // options: { nospawn: true },
+      scripts: {
+        files: ['styles/**/*'],
+        tasks: ['default']
+      }
+    }
   });
 
   grunt.loadNpmTasks('grunt-csstree');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('default', ['clean','copy', 'less', 'csstree']);
+  grunt.registerTask('build', ['copy', 'less', 'csstree']);
+  grunt.registerTask('default', ['clean','build']);
 
 };
