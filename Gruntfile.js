@@ -23,9 +23,7 @@ module.exports = function(grunt) {
         expand: true, 
         cwd: 'styles', 
         src: ['**/*.css'],
-        // ext: '.gen.css',
-        dest: 'gen/', 
-        // extDot: 'last'
+        dest: 'gen/'
       }
     },
     csstree: {
@@ -34,12 +32,16 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      // options: { nospawn: true },
-      scripts: {
+      options: { nospawn: true },
+      less: {
         files: ['styles/**/*'],
-        tasks: ['default']
+        tasks: ['less']
       }
     }
+  });
+
+  grunt.event.on('watch', function(action, filepath, target) {
+    grunt.config('less.compileTree.src', [filepath.replace('styles/', '')] );
   });
 
   grunt.loadNpmTasks('grunt-csstree');
